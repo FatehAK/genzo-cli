@@ -1,0 +1,79 @@
+{
+  "name": "test_cli",
+  "version": "0.0.0",
+  "author": "FatehAK",
+  "main": "dist/cli.mjs",
+  "files": [
+    "dist/"
+  ],
+  "license": "MIT",
+  "description": "PACKAGE_DESCRIPTION",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FatehAK/PACKAGE_NAME"
+  },
+  "bin": {
+    "mycli": "./dist/cli.mjs"
+  },
+  "bugs": {
+    "url": "https://github.com/FatehAK/PACKAGE_NAME/issues"
+  },
+  "homepage": "https://github.com/FatehAK/PACKAGE_NAME#readme",
+  "keywords": [
+    "YOUR",
+    "PACKAGE",
+    "KEYWORDS"
+  ],
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "build:watch": "vite build --watch",
+    "release": "release-it",
+    "tarball": "rimraf tar && pnpm pack --pack-destination ./tar",
+    "analyze": "open ./reports/build-stats.html",
+    "clean": "pnpm rimraf tar reports dist node_modules/.vite node_modules/.cache",
+    "lint": "concurrently -g -n \"prettier,eslint\" -c \"bgGreen.bold,bgBlue.bold\" \"pnpm prettier-check\" \"pnpm eslint-check\"",
+    "lint:fix": "pnpm eslint-fix && pnpm prettier-fix",
+    "prettier-check": "prettier --loglevel warn --cache --cache-strategy content --cache-location ./node_modules/.cache/.prettiercache --check .",
+    "prettier-fix": "prettier --loglevel warn --cache --cache-strategy content --cache-location ./node_modules/.cache/.prettiercache --write .",
+    "eslint-check": "eslint --max-warnings=25 --format=pretty --cache --cache-strategy content --cache-location ./node_modules/.cache/.eslintcache '{**/*,*}.js'",
+    "eslint-fix": "pnpm eslint-check --fix",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged",
+    "cz": "czg"
+  },
+  "dependencies": {
+    "ansi-colors": "^4.1.3",
+    "fs-extra": "^11.1.0",
+    "node-fetch": "^3.3.0",
+    "pathe": "^1.0.0",
+    "minimatch": "^5.1.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "concurrently": "^7.6.0",
+    "czg": "1.4.1",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-semistandard": "^17.0.0",
+    "eslint-formatter-pretty": "^4.1.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-sonarjs": "^0.17.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.1",
+    "release-it": "^15.6.0",
+    "rimraf": "^3.0.2",
+    "rollup-plugin-visualizer": "^5.9.0",
+    "vite": "^4.0.3"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "packageManager": "pnpm@7.21.0",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  }
+}
