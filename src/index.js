@@ -4,8 +4,10 @@ import { resolve, join, sep } from 'pathe';
 import ansi from 'ansi-colors';
 import fetch from 'node-fetch';
 import minimatch from 'minimatch';
+import inquirer from 'inquirer';
+import { createSpinner } from 'nanospinner';
 import { escapeRegex } from './utils';
-import { GITHUB_DIR_TYPE, GITHUB_FILE_TYPE, CONFIG_FILE_NAME, GITHUB_PATH_REGEX } from './constants';
+import { GITHUB_DIR_TYPE, GITHUB_FILE_TYPE, CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './constants';
 
 (async function () {
   let config;
@@ -21,6 +23,9 @@ import { GITHUB_DIR_TYPE, GITHUB_FILE_TYPE, CONFIG_FILE_NAME, GITHUB_PATH_REGEX 
     console.log(ansi.red(`\n${ansi.bold('templatePath')} missing in config file ${CONFIG_FILE_NAME}`));
     process.exit(1);
   }
+
+  // register inquirer fuzzy search plugin
+  inquirer.registerPrompt('search-list', (await import('inquirer-search-list')).default);
 
   const { templatePath, githubToken, authorName: defaultAuthor, slotPaths = [], customSlots = {} } = config;
   let authorName = defaultAuthor;
@@ -72,8 +77,8 @@ import { GITHUB_DIR_TYPE, GITHUB_FILE_TYPE, CONFIG_FILE_NAME, GITHUB_PATH_REGEX 
   function replaceSlots(filePath, content) {
     if (slotPaths.some(pattern => minimatch(filePath, pattern))) {
       const slots = {
-        '[AUTHOR_NAME]': authorName,
-        '[REPO_NAME]': repoName,
+        '[REPO_NAME]': repoName.trim(),
+        '[AUTHOR_NAME]': authorName.trim(),
         ...customSlots,
       };
       const regex = new RegExp(escapeRegex(Object.keys(slots).join('|')), 'g');
@@ -84,27 +89,76 @@ import { GITHUB_DIR_TYPE, GITHUB_FILE_TYPE, CONFIG_FILE_NAME, GITHUB_PATH_REGEX 
 
   try {
     // check if template path is a github url or local folder
-    const isGithubPath = new RegExp(GITHUB_PATH_REGEX).test(templatePath);
+    const isGithubPath = GITHUB_PATH_REGEX.test(templatePath);
+
     let templates;
     if (isGithubPath) {
+      const spinner = createSpinner('Fetching templates from GitHub...').start();
       templates = await callGitHubApi(githubToken, templatePath);
+      spinner.success({ text: 'Templates Fetched!\n' });
     } else {
+      const spinner = createSpinner('Searching templates...\n').start();
       templates = await getLocalTemplates(templatePath);
+      spinner.success({ text: `Templates located at ${ansi.cyan(templatePath)}\n` });
     }
 
-    // TODO: Get below inputs from terminal
-    const inputTemplate = 'pro-react';
-    repoName = 'my-react-app';
-    if (!authorName) {
-      authorName = 'fatehak';
+    const { inputTemplate, repoNameInput } = await inquirer.prompt([
+      {
+        type: 'search-list',
+        message: 'Select a template',
+        name: 'inputTemplate',
+        choices: templates,
+        ...INQUIRER_DEFAULT_OPTS,
+      },
+      {
+        type: 'input',
+        message: 'Enter name of the repo',
+        name: 'repoNameInput',
+        validate: input => {
+          if (!input.trim().length) return ansi.red('Repo name is required');
+          return true;
+        },
+        ...INQUIRER_DEFAULT_OPTS,
+      },
+    ]);
+
+    repoName = repoNameInput;
+
+    if (!authorName?.trim().length) {
+      const { authorNameInput } = await inquirer.prompt({
+        type: 'input',
+        message: 'Enter author name',
+        name: 'authorNameInput',
+        validate: input => {
+          if (!input.trim().length) return ansi.red('Author name is required');
+          return true;
+        },
+        ...INQUIRER_DEFAULT_OPTS,
+      });
+      authorName = authorNameInput;
     }
 
     const chosenTemplate = templates.find(t => t.name === inputTemplate);
     if (isGithubPath) {
+      console.log('\r');
+      const spinner = createSpinner('Downloading files...\n').start();
       await downloadDirectory(chosenTemplate.url, repoName);
+      spinner.success({ text: `${ansi.green('Project created!')}\n` });
     } else {
+      console.log('\r');
+      const spinner = createSpinner('Copying files...\n').start();
       await copyDirectory(chosenTemplate.path, repoName);
+      spinner.success({ text: `${ansi.green('Project created!')}\n` });
     }
+
+    // const { isGitRepo } = await inquirer.prompt({
+    //   type: 'confirm',
+    //   message: 'Initialize a git repository?',
+    //   name: 'isGitRepo',
+    //   default: false,
+    //   // default: true, // TODO: Check if possible to get from args
+    //   ...INQUIRER_DEFAULT_OPTS,
+    // });
 
     process.exit(0);
   } catch (err) {
