@@ -111,7 +111,7 @@ export async function installPackages(pkgManager, targetDir) {
 }
 
 export async function openInEditor(editor, targetDir) {
-  const result = await execa(editor, ['.'], { cwd: targetDir });
+  const result = await execa(editor, [targetDir]);
   if (result.failed) return Promise.reject(new Error('Failed to open in code editor'));
   return true;
 }
