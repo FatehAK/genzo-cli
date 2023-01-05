@@ -104,7 +104,7 @@ export async function initializeGit(targetDir) {
   return true;
 }
 
-export async function installPackages(pkgManager, targetDir) {
+export async function installPackagesByPath(pkgManager, targetDir) {
   const result = await execa(pkgManager, ['install'], { cwd: targetDir });
   if (result.failed) return Promise.reject(new Error('Failed to install packages'));
   return true;

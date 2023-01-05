@@ -11,7 +11,7 @@ import {
   copyDirectory,
   getLocalTemplates,
   initializeGit,
-  installPackages,
+  installPackagesByPath,
   openInEditor,
   getHelpTemplate,
 } from './utils';
@@ -61,7 +61,7 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
 
     let templates;
     if (isGithubPath) {
-      const spinner = createSpinner('Fetching templates from GitHub...').start();
+      const spinner = createSpinner('Fetching templates from GitHub...\n').start();
       templates = await callGitHubApi(config.templatePath, config.githubToken);
       spinner.success({ text: 'Templates Fetched!\n' });
     } else {
@@ -125,8 +125,9 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
     }
 
     // STEP 5 - initialize Git if specified in args already else start inquirer
-    let hasGitArg = argv.git;
-    if (!hasGitArg) {
+    if (argv.git) {
+      await initializeGit(repoAbsPath);
+    } else {
       const { isGitRepoInput } = await inquirer.prompt({
         type: 'confirm',
         message: 'Initialize a git repository?',
@@ -134,28 +135,14 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
         default: true,
         ...INQUIRER_DEFAULT_OPTS,
       });
-      hasGitArg = isGitRepoInput;
+      if (isGitRepoInput) await initializeGit(repoAbsPath);
     }
-    if (hasGitArg) await initializeGit(repoAbsPath);
 
-    // STEP 6 - check if repo governed by pkgManager and install packages if specified in args already else start inquirer
+    // STEP 6 - check if repo governed by pkgManager
     if (config.packageMap.length) {
-      let hasPkgArg = argv.install;
-      if (!hasPkgArg) {
-        const { isPkgInstallInput } = await inquirer.prompt({
-          type: 'confirm',
-          message: 'Install Packages?',
-          name: 'isPkgInstallInput',
-          default: true,
-          ...INQUIRER_DEFAULT_OPTS,
-        });
-        hasPkgArg = isPkgInstallInput;
-      }
-      if (hasPkgArg) {
-        console.log('\r');
-        const isMonorepo = config.packageMap.length > 1;
+      async function runPackageInstaller() {
         let message;
-        if (isMonorepo) {
+        if (config.packageMap.length > 1) {
           message = `Monorepo detected, installing packages in the paths:\n`;
           config.packageMap.forEach(p => {
             const pathSegs = p.path.split(sep);
@@ -164,17 +151,35 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
         } else {
           message = `Detected ${ansi.cyan(config.packageMap[0].manager)}, installing packages...\n`;
         }
+        if (!argv.git || !argv.install) console.log('\r');
         const spinner = createSpinner(message).start();
         const handles = config.packageMap.map(async p => {
-          await installPackages(p.manager, p.path);
+          await installPackagesByPath(p.manager, p.path);
         });
+        // run package installation parallely
         await Promise.all(handles);
         spinner.success({ text: `${ansi.green('Packages installed and ready!')}\n` });
+      }
+
+      // install packages if specified in args already else start inquirer
+      if (argv.install) {
+        await runPackageInstaller();
+      } else {
+        const { isPkgInstallInput } = await inquirer.prompt({
+          type: 'confirm',
+          message: 'Install Packages?',
+          name: 'isPkgInstallInput',
+          default: true,
+          ...INQUIRER_DEFAULT_OPTS,
+        });
+        if (isPkgInstallInput) await runPackageInstaller();
       }
     }
 
     // STEP 7 - open generated repository in the code editor
-    if (!argv.editor) {
+    if (argv.editor?.length) {
+      await openInEditor(argv.editor, repoAbsPath);
+    } else {
       const { isOpenEditorInput } = await inquirer.prompt({
         type: 'confirm',
         message: 'Open in code editor?',
@@ -183,8 +188,6 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
         ...INQUIRER_DEFAULT_OPTS,
       });
       if (isOpenEditorInput) await openInEditor(config.editorBinary, repoAbsPath);
-    } else {
-      await openInEditor(argv.editor, repoAbsPath);
     }
 
     process.exit(0);
