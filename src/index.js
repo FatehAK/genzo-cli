@@ -4,7 +4,7 @@ import ansi from 'ansi-colors';
 import minimist from 'minimist';
 import inquirer from 'inquirer';
 import { createSpinner } from 'nanospinner';
-import { downloadDirectory, callGitHubApi, copyDirectory, getLocalTemplates, initializeGit, installPackages } from './utils';
+import { downloadDirectory, callGitHubApi, copyDirectory, getLocalTemplates, initializeGit, installPackages, openInEditor } from './utils';
 import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './constants';
 
 (async function () {
@@ -15,6 +15,7 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
       version: 'v',
       git: 'g',
       install: 'i',
+      editor: 'e',
     },
   });
 
@@ -147,6 +148,21 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
         });
         await Promise.all(handles);
         spinner.success({ text: `${ansi.green('Packages installed and ready!')}\n` });
+      }
+    }
+
+    // STEP 7 - open created repository in editor
+    const selectedEditor = argv.editor || config.editorBinary;
+    if (selectedEditor) {
+      const { isOpenEditorInput } = await inquirer.prompt({
+        type: 'confirm',
+        message: 'Open in code editor?',
+        name: 'isOpenEditorInput',
+        default: true,
+        ...INQUIRER_DEFAULT_OPTS,
+      });
+      if (isOpenEditorInput) {
+        await openInEditor(selectedEditor, repoAbsPath);
       }
     }
 

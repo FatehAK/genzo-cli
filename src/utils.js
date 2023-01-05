@@ -109,3 +109,9 @@ export async function installPackages(pkgManager, targetDir) {
   if (result.failed) return Promise.reject(new Error('Failed to install packages'));
   return true;
 }
+
+export async function openInEditor(editor, targetDir) {
+  const result = await execa(editor, ['.'], { cwd: targetDir });
+  if (result.failed) return Promise.reject(new Error('Failed to open in code editor'));
+  return true;
+}
