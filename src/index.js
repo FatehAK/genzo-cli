@@ -1,10 +1,10 @@
 import os from 'os';
-import { join } from 'pathe';
+import { join, sep } from 'pathe';
 import ansi from 'ansi-colors';
 import minimist from 'minimist';
 import inquirer from 'inquirer';
 import { createSpinner } from 'nanospinner';
-import { downloadDirectory, callGitHubApi, copyDirectory, getLocalTemplates, initializeGit } from './utils';
+import { downloadDirectory, callGitHubApi, copyDirectory, getLocalTemplates, initializeGit, installPackages } from './utils';
 import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './constants';
 
 (async function () {
@@ -69,6 +69,7 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
       },
     ]);
     config.repoName = repoNameInput;
+    const repoAbsPath = join(process.cwd(), config.repoName);
 
     // STEP 3 - ask user their authorName only if not already defined in .rc file
     if (!config.authorName?.trim().length) {
@@ -87,6 +88,7 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
 
     // STEP 4 - Download or Copy the template into chosen folder `repoName` in cwd
     const chosenTemplate = templates.find(t => t.name === inputTemplate);
+    config.packageMap = []; // for tracking pkg manager locations
     if (isGithubPath) {
       console.log('\r');
       const spinner = createSpinner('Downloading files...\n').start();
@@ -106,12 +108,47 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
         type: 'confirm',
         message: 'Initialize a git repository?',
         name: 'isGitRepoInput',
-        default: false,
+        default: true,
         ...INQUIRER_DEFAULT_OPTS,
       });
       hasGitArg = isGitRepoInput;
     }
-    if (hasGitArg) await initializeGit(join(process.cwd(), config.repoName));
+    if (hasGitArg) await initializeGit(repoAbsPath);
+
+    // STEP 6 - check if repo governed by pkgManager and install packages if specified in args already else start inquirer
+    if (config.packageMap.length) {
+      let hasPkgArg = argv.install;
+      if (!hasPkgArg) {
+        const { isPkgInstallInput } = await inquirer.prompt({
+          type: 'confirm',
+          message: 'Install Packages?',
+          name: 'isPkgInstallInput',
+          default: true,
+          ...INQUIRER_DEFAULT_OPTS,
+        });
+        hasPkgArg = isPkgInstallInput;
+      }
+      if (hasPkgArg) {
+        console.log('\r');
+        const isMonorepo = config.packageMap.length > 1;
+        let message;
+        if (isMonorepo) {
+          message = `Monorepo detected, installing packages in the paths:\n`;
+          config.packageMap.forEach(p => {
+            const pathSegs = p.path.split(sep);
+            message += `${ansi.cyan(`[${p.manager}]`)} ${sep}${pathSegs[pathSegs.length - 2]}${sep}${pathSegs[pathSegs.length - 1]}\n`;
+          });
+        } else {
+          message = `Detected ${ansi.cyan(config.packageMap[0].manager)}, installing packages...\n`;
+        }
+        const spinner = createSpinner(message).start();
+        const handles = config.packageMap.map(async p => {
+          await installPackages(p.manager, p.path);
+        });
+        await Promise.all(handles);
+        spinner.success({ text: `${ansi.green('Packages installed and ready!')}\n` });
+      }
+    }
 
     process.exit(0);
   } catch (err) {

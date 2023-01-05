@@ -19,6 +19,7 @@ module.exports = {
     'func-names': 'off',
     'no-useless-escape': 'off',
     'sonarjs/cognitive-complexity': 'off',
+    'sonarjs/no-nested-template-literals': 'off',
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }], // allow _ as ignored params
     'sort-imports': 'off', // turned off in favour of import/order rule
     'import/order': [

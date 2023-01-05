@@ -28,6 +28,13 @@ export async function callGitHubApi(url, token, raw = false) {
   return await response.json();
 }
 
+const checkForPkgManager = filePath => {
+  if (filePath.includes('package-lock.json')) return 'npm';
+  if (filePath.includes('yarn.lock')) return 'yarn';
+  if (filePath.includes('pnpm-lock.yaml')) return 'pnpm';
+  return false;
+};
+
 export async function downloadDirectory(url, targetDir, config) {
   // create a folder if not exists
   await fs.ensureDir(targetDir);
@@ -39,6 +46,9 @@ export async function downloadDirectory(url, targetDir, config) {
     if (content.type === GITHUB_FILE_TYPE) {
       const fileStr = await callGitHubApi(content.url, config.githubToken, true);
       const filePathAbs = join(targetDir, content.name);
+      // check for pkg manager lock files
+      const pkgManager = checkForPkgManager(filePathAbs);
+      if (pkgManager) config.packageMap.push({ manager: pkgManager, path: targetDir });
       // replace slots in the file and write it
       fs.writeFile(filePathAbs, replaceSlots(filePathAbs, fileStr, config));
     } else if (content.type === GITHUB_DIR_TYPE) {
@@ -61,6 +71,9 @@ export async function copyDirectory(path, targetDir, config) {
     if (fs.lstatSync(contentAbsPath).isFile()) {
       const fileStr = await fs.readFile(contentAbsPath, 'utf8');
       const filePathAbs = join(targetDir, content);
+      // check for pkg manager lock files
+      const pkgManager = checkForPkgManager(filePathAbs);
+      if (pkgManager) config.packageMap.push({ manager: pkgManager, path: targetDir });
       // replace slots in the file and write it
       fs.writeFile(filePathAbs, replaceSlots(filePathAbs, fileStr, config));
     } else if (fs.lstatSync(contentAbsPath).isDirectory()) {
@@ -88,5 +101,11 @@ function replaceSlots(filePath, content, config) {
 export async function initializeGit(targetDir) {
   const result = await execa('git', ['init'], { cwd: targetDir });
   if (result.failed) return Promise.reject(new Error('Failed to initialize git'));
+  return true;
+}
+
+export async function installPackages(pkgManager, targetDir) {
+  const result = await execa(pkgManager, ['install'], { cwd: targetDir });
+  if (result.failed) return Promise.reject(new Error('Failed to install packages'));
   return true;
 }
