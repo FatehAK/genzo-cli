@@ -5,7 +5,16 @@ import minimist from 'minimist';
 import inquirer from 'inquirer';
 import { createSpinner } from 'nanospinner';
 import { version } from '../package.json';
-import { downloadDirectory, callGitHubApi, copyDirectory, getLocalTemplates, initializeGit, installPackages, openInEditor } from './utils';
+import {
+  downloadDirectory,
+  callGitHubApi,
+  copyDirectory,
+  getLocalTemplates,
+  initializeGit,
+  installPackages,
+  openInEditor,
+  getHelpTemplate,
+} from './utils';
 import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './constants';
 
 (async function () {
@@ -20,9 +29,15 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
     },
   });
 
-  // print version info
+  // prints version string
   if (argv.version) {
     console.log(version);
+    process.exit(0);
+  }
+
+  // prints help information
+  if (argv.help) {
+    console.log(getHelpTemplate());
     process.exit(0);
   }
 
@@ -158,9 +173,8 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
       }
     }
 
-    // STEP 7 - open created repository in editor
-    const selectedEditor = argv.editor || config.editorBinary;
-    if (selectedEditor) {
+    // STEP 7 - open generated repository in the code editor
+    if (!argv.editor) {
       const { isOpenEditorInput } = await inquirer.prompt({
         type: 'confirm',
         message: 'Open in code editor?',
@@ -168,7 +182,9 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
         default: true,
         ...INQUIRER_DEFAULT_OPTS,
       });
-      if (isOpenEditorInput) await openInEditor(selectedEditor, repoAbsPath);
+      if (isOpenEditorInput) await openInEditor(config.editorBinary, repoAbsPath);
+    } else {
+      await openInEditor(argv.editor, repoAbsPath);
     }
 
     process.exit(0);

@@ -115,3 +115,28 @@ export async function openInEditor(editor, targetDir) {
   if (result.failed) return Promise.reject(new Error('Failed to open in code editor'));
   return true;
 }
+
+export function getHelpTemplate() {
+  return `
+NAME:
+  gen - rapidly scaffold projects for development with automation
+
+USAGE:
+  gen [OPTIONS]
+
+OPTIONS:
+  -h, --help             show this message and exit
+  -v, --version          print the version string
+  -g, --git              auto-initialize a git repository
+  -i, --install          auto-install packages
+  -e, --editor <string>  open in the specified editor
+
+EXAMPLES:
+  gen -g                           # auto-initializes a git repository without querying the user
+  gen -i                           # auto-installs packages without querying the user
+  gen -e code                      # opens the generated repository in the specified code editor (eg. VSCode)
+  gen -gi -e code                  # does all the tasks defined above in a single command
+
+Author: <github.com/FatehAK>
+`;
+}
