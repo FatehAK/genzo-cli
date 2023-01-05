@@ -4,6 +4,7 @@ import ansi from 'ansi-colors';
 import minimist from 'minimist';
 import inquirer from 'inquirer';
 import { createSpinner } from 'nanospinner';
+import { version } from '../package.json';
 import { downloadDirectory, callGitHubApi, copyDirectory, getLocalTemplates, initializeGit, installPackages, openInEditor } from './utils';
 import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './constants';
 
@@ -18,6 +19,12 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
       editor: 'e',
     },
   });
+
+  // print version info
+  if (argv.version) {
+    console.log(version);
+    process.exit(0);
+  }
 
   // check if config file and template path exists
   const homeDir = os.homedir();
@@ -161,9 +168,7 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
         default: true,
         ...INQUIRER_DEFAULT_OPTS,
       });
-      if (isOpenEditorInput) {
-        await openInEditor(selectedEditor, repoAbsPath);
-      }
+      if (isOpenEditorInput) await openInEditor(selectedEditor, repoAbsPath);
     }
 
     process.exit(0);
