@@ -112,6 +112,7 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
     // STEP 4 - Download or Copy the template into chosen folder `repoName` in cwd
     const chosenTemplate = templates.find(t => t.name === inputTemplate);
     config.packageMap = []; // for tracking pkg manager locations
+    config.hasHusky = false; // check if template has husky scripts
     if (isGithubPath) {
       console.log('\r');
       const spinner = createSpinner('Downloading files...\n').start();
@@ -126,7 +127,7 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
 
     // STEP 5 - initialize Git if specified in args already else start inquirer
     if (argv.git) {
-      await initializeGit(repoAbsPath);
+      await initializeGit(repoAbsPath, config.hasHusky);
     } else {
       const { isGitRepoInput } = await inquirer.prompt({
         type: 'confirm',
@@ -135,7 +136,7 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
         default: true,
         ...INQUIRER_DEFAULT_OPTS,
       });
-      if (isGitRepoInput) await initializeGit(repoAbsPath);
+      if (isGitRepoInput) await initializeGit(repoAbsPath, config.hasHusky);
     }
 
     // STEP 6 - check if repo governed by pkgManager

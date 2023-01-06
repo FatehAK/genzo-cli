@@ -28,12 +28,16 @@ export async function callGitHubApi(url, token, raw = false) {
   return await response.json();
 }
 
-const checkForPkgManager = filePath => {
+function checkForPkgManager(filePath) {
   if (filePath.includes('package-lock.json')) return 'npm';
   if (filePath.includes('yarn.lock')) return 'yarn';
   if (filePath.includes('pnpm-lock.yaml')) return 'pnpm';
   return false;
-};
+}
+
+function checkForHuskyScripts(filePath) {
+  return filePath.includes('.husky');
+}
 
 export async function downloadDirectory(url, targetDir, config) {
   // create a folder if not exists
@@ -49,6 +53,8 @@ export async function downloadDirectory(url, targetDir, config) {
       // check for pkg manager lock files
       const pkgManager = checkForPkgManager(filePathAbs);
       if (pkgManager) config.packageMap.push({ manager: pkgManager, path: targetDir });
+      // check for husky scripts
+      if (checkForHuskyScripts(filePathAbs)) config.hasHusky = true;
       // replace slots in the file and write it
       fs.writeFile(filePathAbs, replaceSlots(filePathAbs, fileStr, config));
     } else if (content.type === GITHUB_DIR_TYPE) {
@@ -74,6 +80,8 @@ export async function copyDirectory(path, targetDir, config) {
       // check for pkg manager lock files
       const pkgManager = checkForPkgManager(filePathAbs);
       if (pkgManager) config.packageMap.push({ manager: pkgManager, path: targetDir });
+      // check for husky scripts
+      if (checkForHuskyScripts(filePathAbs)) config.hasHusky = true;
       // replace slots in the file and write it
       fs.writeFile(filePathAbs, replaceSlots(filePathAbs, fileStr, config));
     } else if (fs.lstatSync(contentAbsPath).isDirectory()) {
@@ -98,9 +106,16 @@ function replaceSlots(filePath, content, config) {
   return content;
 }
 
-export async function initializeGit(targetDir) {
+export async function initializeGit(targetDir, hasHusky) {
   const result = await execa('git', ['init'], { cwd: targetDir });
   if (result.failed) return Promise.reject(new Error('Failed to initialize git'));
+
+  if (hasHusky) {
+    // set husky scripts as executable
+    const result = await execa('chmod', ['ug+x', `${targetDir}${sep}.husky${sep}*`], { shell: true });
+    if (result.failed) return Promise.reject(new Error('Failed to initialize husky'));
+  }
+
   return true;
 }
 
