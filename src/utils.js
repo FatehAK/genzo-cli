@@ -147,10 +147,10 @@ OPTIONS:
   -e, --editor <string>  open in the specified editor
 
 EXAMPLES:
-  gen -g                           # auto-initializes a git repository without querying the user
-  gen -i                           # auto-installs packages without querying the user
-  gen -e code                      # opens the generated repository in the specified code editor (eg. VSCode)
-  gen -gi -e code                  # does all the tasks defined above in a single command
+  gen -g                 # auto-initializes a git repository without querying the user
+  gen -i                 # auto-installs packages without querying the user
+  gen -e code            # opens the generated repository in the specified code editor (eg. VSCode)
+  gen -gi -e code        # does all the tasks defined above in a single command
 
 Author: <github.com/FatehAK>
 `;
