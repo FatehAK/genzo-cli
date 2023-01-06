@@ -1,5 +1,5 @@
 {
-  "name": "test_cli",
+  "name": "genzo",
   "version": "0.0.0",
   "author": "FatehAK",
   "main": "dist/cli.mjs",
@@ -7,22 +7,35 @@
     "dist/"
   ],
   "license": "MIT",
-  "description": "PACKAGE_DESCRIPTION",
+  "description": "Rapidly scaffold projects for development with custom templates",
   "repository": {
     "type": "git",
-    "url": "https://github.com/FatehAK/PACKAGE_NAME"
+    "url": "https://github.com/FatehAK/genzo-cli"
   },
   "bin": {
-    "gen": "./dist/cli.mjs"
+    "gen": "./dist/cli.mjs",
+    "genzo": "./dist/cli.mjs"
   },
   "bugs": {
-    "url": "https://github.com/FatehAK/PACKAGE_NAME/issues"
+    "url": "https://github.com/FatehAK/genzo-cli/issues"
   },
-  "homepage": "https://github.com/FatehAK/PACKAGE_NAME#readme",
+  "homepage": "https://github.com/FatehAK/genzo-cli#readme",
   "keywords": [
-    "YOUR",
-    "PACKAGE",
-    "KEYWORDS"
+    "development",
+    "dev",
+    "build",
+    "tool",
+    "cli",
+    "scaffold",
+    "scaffolding",
+    "generate",
+    "generator",
+    "genzo-cli",
+    "genzo",
+    "boilerplate",
+    "templating",
+    "template",
+    "bootstrap"
   ],
   "scripts": {
     "start": "vite",

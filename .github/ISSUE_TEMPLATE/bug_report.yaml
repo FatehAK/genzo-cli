@@ -29,8 +29,7 @@ body:
     id: system-info
     attributes:
       label: System Info
-      ## TODO: Add your npm package glob pattern in the below quotes
-      description: Output of `npx envinfo --system --npmPackages '' --binaries --browsers`
+      description: Output of `npx envinfo --system --npmPackages 'genzo' --binaries --browsers`
       render: shell
       placeholder: System, Binaries, Browsers
     validations:
@@ -52,9 +51,7 @@ body:
       label: Validations
       description: Before submitting the issue, please make sure you do the following
       options:
-        # TODO: Update your author name and package name below
-        - label: Read the [docs](https://github.com/FatehAK/PACKAGE_NAME#readme).
+        - label: Read the [docs](https://github.com/FatehAK/genzo-cli#readme).
           required: true
-        # TODO: Update your author name and package name below
-        - label: Check that there isn't [already an issue](https://github.com/FatehAK/PACKAGE_NAME/issues) that reports the same bug to avoid creating a duplicate.
+        - label: Check that there isn't [already an issue](https://github.com/FatehAK/genzo-cli/issues) that reports the same bug to avoid creating a duplicate.
           required: true

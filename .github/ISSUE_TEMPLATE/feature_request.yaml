@@ -31,9 +31,7 @@ body:
       label: Validations
       description: Before submitting the issue, please make sure you do the following
       options:
-        # TODO: Update your author name and package name below
-        - label: Read the [docs](https://github.com/FatehAK/PACKAGE_NAME/#readme).
+        - label: Read the [docs](https://github.com/FatehAK/genzo-cli/#readme).
           required: true
-        # TODO: Update your author name and package name below
-        - label: Check that there isn't [already an issue](https://github.com/FatehAK/PACKAGE_NAME/issues) that requests the same feature to avoid creating a duplicate.
+        - label: Check that there isn't [already an issue](https://github.com/FatehAK/genzo-cli/issues) that requests the same feature to avoid creating a duplicate.
           required: true

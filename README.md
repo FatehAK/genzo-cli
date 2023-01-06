@@ -1,1 +1,1 @@
-# test-cli
+# genzo-cli

@@ -119,10 +119,10 @@ export async function openInEditor(editor, targetDir) {
 export function getHelpTemplate() {
   return `
 NAME:
-  gen - rapidly scaffold projects for development with automation
+  gen - rapidly scaffold projects for development with custom templates
 
 USAGE:
-  gen [OPTIONS]
+  gen [OPTIONS] | genzo [options]
 
 OPTIONS:
   -h, --help             show this message and exit
