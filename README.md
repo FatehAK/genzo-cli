@@ -18,7 +18,7 @@
 - Fuzzy searches your list of templates for convenience and ease of use.
 - Interactive prompts using [Inquirer](https://www.npmjs.com/package/inquirer) to automate common tasks in repository setup.
 - Can detect a Monorepo template and install deps in all packages.
-- Checks presence of [Husky](https://www.npmjs.com/package/husky) scripts and makes them executable so you don't have to!
+- Checks the presence of [Husky](https://www.npmjs.com/package/husky) scripts and makes them executable so you don't have to!
 - Make use of slots to quickly replace repeated patterns in the generated repository.
 - Supports CLI arguments to automatically initialize Git, install packages and open your preferred code editor.
 
@@ -31,6 +31,8 @@
 - Using a local Monorepo template and auto-setup git and packages without prompting the user with the `-gi` flag
 
 ![monorepo usage](https://images2.imgbox.com/bd/12/7Qwxmkql_o.gif)
+
+Templates created by me for reference - https://github.com/FatehAK/dev-templates
 
 ### Installation
 
@@ -50,13 +52,16 @@ OPTIONS:
   -v, --version          print the version string
   -g, --git              auto-initialize a git repository
   -i, --install          auto-install packages
-  -e, --editor <string>  open in the specified editor
+  -e, --editor           opens the editor defined in config
+  -e, --editor <string>  opens the specified editor
 
 EXAMPLES:
   gen -g                 # auto-initializes a git repository without querying the user
   gen -i                 # auto-installs packages without querying the user
-  gen -e code            # opens the generated repository in the specified code editor (eg. VSCode)
-  gen -gi -e code        # does all the tasks defined above in a single command
+  gen -e                 # opens the generated repository in the editor defined in config
+  gen -e code            # opens the generated repository in the specified editor (i.e VSCode)
+  gen -gie               # does git init, installs packages and opens the editor defined in config
+  gen -gi -e code        # does git init, installs packages and opens the specified editor (i.e VSCode)
 ```
 
 ### Configuration
@@ -108,7 +113,7 @@ Check this [link](https://docs.github.com/en/authentication/keeping-your-account
 
 Type: `String` Default: `undefined`
 
-The default author name to be used while creating the repository. If this value is present then the cli will skip asking the author name query.
+The default author name to be used while creating the repository. If this value is present then the CLI will skip asking the author name query.
 
 ### `slotPaths`
 
@@ -126,7 +131,7 @@ The above example will replace slots defined in `.github` folder and `.package.j
 
 Type: `Object` Default: `undefined`
 
-An object with slot-value mapping. The cli will replace these slots with their corresponding values within files
+An object with slot name-value mapping. The CLI will replace these slots with their corresponding values within files.
 
 ```js
 slots: {
@@ -134,7 +139,7 @@ slots: {
 }
 ```
 
-The above example will all occurences of `[AUTHOR_NAME]` with `your_name` in matching files defined in `slotPaths`
+The above example will replace all occurences of `[AUTHOR_NAME]` with `your_name` in matching files defined in `slotPaths`
 
 By default, `[AUTHOR_NAME]` and `[REPO_NAME]` slots will be replaced in the generated repository based on user input.
 

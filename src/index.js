@@ -178,8 +178,10 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
     }
 
     // STEP 7 - open generated repository in the code editor
-    if (argv.editor?.length) {
+    if (typeof argv.editor === 'string' && argv.editor.length) {
       await openInEditor(argv.editor, repoAbsPath);
+    } else if (argv.editor) {
+      await openInEditor(config.editorBinary, repoAbsPath);
     } else {
       const { isOpenEditorInput } = await inquirer.prompt({
         type: 'confirm',

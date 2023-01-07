@@ -144,13 +144,16 @@ OPTIONS:
   -v, --version          print the version string
   -g, --git              auto-initialize a git repository
   -i, --install          auto-install packages
-  -e, --editor <string>  open in the specified editor
+  -e, --editor           opens the editor defined in config
+  -e, --editor <string>  opens the specified editor
 
 EXAMPLES:
   gen -g                 # auto-initializes a git repository without querying the user
   gen -i                 # auto-installs packages without querying the user
-  gen -e code            # opens the generated repository in the specified code editor (eg. VSCode)
-  gen -gi -e code        # does all the tasks defined above in a single command
+  gen -e                 # opens the generated repository in the editor defined in config
+  gen -e code            # opens the generated repository in the specified editor (i.e VSCode)
+  gen -gie               # does git init, installs packages and opens the editor defined in config
+  gen -gi -e code        # does git init, installs packages and opens the specified editor (i.e VSCode)
 
 Author: <github.com/FatehAK>
 `;
