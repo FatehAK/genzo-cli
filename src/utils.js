@@ -94,14 +94,14 @@ export async function copyDirectory(path, targetDir, config) {
 
 function replaceSlots(filePath, content, config) {
   if (config.slotPaths?.some(pattern => minimatch(filePath, pattern))) {
-    const { customSlots = {} } = config;
-    const slots = {
+    const { slots = {} } = config;
+    const allSlots = {
       '[REPO_NAME]': config.repoName.trim(),
       '[AUTHOR_NAME]': config.authorName.trim(),
-      ...customSlots,
+      ...slots,
     };
-    const regex = new RegExp(escapeRegex(Object.keys(slots).join('|')), 'g');
-    return content.replace(regex, match => slots[match]);
+    const regex = new RegExp(escapeRegex(Object.keys(allSlots).join('|')), 'g');
+    return content.replace(regex, match => allSlots[match]);
   }
   return content;
 }

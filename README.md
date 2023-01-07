@@ -71,7 +71,7 @@ module.exports = {
   githubToken: 'aNoiceToken',
   authorName: 'YOUR_NAME',
   slotPaths: ['**/.github/**', '**/package.json', '**/README.md'],
-  customSlots: {
+  slots: {
     '[SOME_VAR]': 'some_value',
   },
   editorBinary: 'code',
@@ -87,13 +87,13 @@ Accepts a GitHub repository path or an absolute path to the templates in your lo
 The GitHub repository path must in the format `https://api.github.com/repos/${USER}/path_to_templates`
 
 ```js
-templatePath: 'https://api.github.com/repos/fatehak/dev-templates/contents/templates';
+templatePath: 'https://api.github.com/repos/fatehak/dev-templates/contents/templates'
 ```
 
 Or you can pass an absolute path to your templates stored locally
 
 ```js
-templatePath: '/Users/myuser/Dev/my-templates';
+templatePath: '/Users/myuser/Dev/my-templates'
 ```
 
 ### `githubToken`
@@ -117,19 +117,19 @@ Type: `Array[String]` Default: `[]`
 An array of minimatch glob patterns that point to files with slots to replace.
 
 ```js
-slotPaths: ['**/.github/**', '**/package.json'];
+slotPaths: ['**/.github/**', '**/package.json']
 ```
 
 The above example will replace slots defined in `.github` folder and `.package.json`
 
-### `customSlots`
+### `slots`
 
 Type: `Object` Default: `undefined`
 
 An object with slot-value mapping. The cli will replace these slots with their corresponding values within files
 
 ```js
-customSlots: {
+slots: {
   '[AUTHOR_NAME]': 'your_name'
 }
 ```
@@ -145,13 +145,13 @@ Type: `String` Default: `undefined`
 Path to an editor binary. This will be used to optionally open the repository at the end of the genzo session.
 
 ```js
-editorBinary: '/Users/my_user/Library/Application Support/JetBrains/Toolbox/scripts/webstorm';
+editorBinary: '/Users/my_user/Library/Application Support/JetBrains/Toolbox/scripts/webstorm'
 ```
 
 or you can also specify an alias to an editor binary, for example to open VSCode
 
 ```js
-editorBinary: 'code';
+editorBinary: 'code'
 ```
 
 ### License
