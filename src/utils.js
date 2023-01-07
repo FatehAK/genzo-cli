@@ -137,7 +137,7 @@ NAME:
   gen - rapidly scaffold projects for development with custom templates
 
 USAGE:
-  gen [OPTIONS] | genzo [options]
+  gen [OPTIONS] | genzo [OPTIONS]
 
 OPTIONS:
   -h, --help             show this message and exit

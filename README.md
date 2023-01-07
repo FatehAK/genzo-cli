@@ -1,1 +1,143 @@
-# genzo-cli
+<div align="center">
+ <h1>genzo</h1>
+  <p>
+    Rapidly scaffold projects for development with custom templates
+  </p>
+</div>
+
+<div align="center">
+  <img src="https://img.shields.io/node/v/genzo" alt="node-current" />
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/fatehak/genzo-cli/validate_build.yaml">
+  <img src="https://img.shields.io/github/v/release/fatehak/genzo-cli" alt="GitHub release" />
+  <img src="https://img.shields.io/npm/l/genzo" alt="licence" />
+</div>
+
+### Features
+
+### Demo
+
+### Installation
+
+```shell
+npm install -g genzo
+```
+
+Create a `.genzorc.js` file in your `$HOME` directory. Refer [config](#configuration) for more details.
+
+### Usage
+
+```console
+gen [OPTIONS] | genzo [OPTIONS]
+
+OPTIONS:
+  -h, --help             show this message and exit
+  -v, --version          print the version string
+  -g, --git              auto-initialize a git repository
+  -i, --install          auto-install packages
+  -e, --editor <string>  open in the specified editor
+
+EXAMPLES:
+  gen -g                 # auto-initializes a git repository without querying the user
+  gen -i                 # auto-installs packages without querying the user
+  gen -e code            # opens the generated repository in the specified code editor (eg. VSCode)
+  gen -gi -e code        # does all the tasks defined above in a single command
+```
+
+### Configuration
+
+The configuration must be defined in `.genzorc.js` and placed in the system's `$HOME` directory.
+
+An example configuration:
+
+```js
+module.exports = {
+  templatePath: 'https://api.github.com/repos/fatehak/dev-templates/contents/templates',
+  githubToken: 'aNoiceToken',
+  authorName: 'YOUR_NAME',
+  slotPaths: ['**/.github/**', '**/package.json', '**/README.md'],
+  customSlots: {
+    '[SOME_VAR]': 'some_value',
+  },
+  editorBinary: 'code',
+};
+```
+
+### `templatePath`
+
+Type: `String` Default: `undefined`
+
+Accepts a GitHub repository path or an absolute path to the templates in your local system.
+
+The GitHub repository path must in the format `https://api.github.com/repos/${USER}/path_to_templates`
+
+```js
+templatePath: 'https://api.github.com/repos/fatehak/dev-templates/contents/templates';
+```
+
+Or you can pass an absolute path to your templates stored locally
+
+```js
+templatePath: '/Users/myuser/Dev/my-templates';
+```
+
+### `githubToken`
+
+Type: `String` Default: `undefined`
+
+Optionally pass a GitHub token to avoid hitting GitHub's rate limiter. Only required if `templatePath` is a GitHub repository. It is mandatory to pass the token for private repositories.
+
+Check this [link](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) for details on creating a token.
+
+### `authorName`
+
+Type: `String` Default: `undefined`
+
+The default author name to be used while creating the repository. If this value is present then the cli will skip asking the author name query.
+
+### `slotPaths`
+
+Type: `Array[String]` Default: `[]`
+
+An array of minimatch glob patterns that point to files with slots to replace.
+
+```js
+slotPaths: ['**/.github/**', '**/package.json'];
+```
+
+The above example will replace slots defined in `.github` folder and `.package.json`
+
+### `customSlots`
+
+Type: `Object` Default: `undefined`
+
+An object with slot-value mapping. The cli will replace these slots with their corresponding values within files
+
+```js
+customSlots: {
+  '[AUTHOR_NAME]': 'your_name'
+}
+```
+
+The above example will all occurences of `[AUTHOR_NAME]` with `your_name` in matching files defined in `slotPaths`
+
+By default, `[AUTHOR_NAME]` and `[REPO_NAME]` slots will be replaced in the generated repository based on user input.
+
+### `editorBinary`
+
+Type: `String` Default: `undefined`
+
+Path to an editor binary. This will be used to optionally open the repository at the end of the genzo session.
+
+```js
+editorBinary: '/Users/my_user/Library/Application Support/JetBrains/Toolbox/scripts/webstorm';
+```
+
+or you can also specify an alias to an editor binary, for example to open VSCode
+
+```js
+editorBinary: 'code';
+```
+
+### License
+
+[MIT](./LICENSE)
