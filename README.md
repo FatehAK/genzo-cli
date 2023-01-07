@@ -1,4 +1,8 @@
 <div align="center">
+  <a href="https://www.npmjs.com/package/genzo">
+    <img width="120" height="120" hspace="10"
+      src="https://images2.imgbox.com/bc/cd/sxR54KnL_o.png" alt="genzo logo">
+  </a>
  <h1>genzo</h1>
   <p>
     Rapidly scaffold your projects for development with custom templates
@@ -89,7 +93,7 @@ Type: `String` Default: `undefined`
 
 Accepts a GitHub repository path or an absolute path to the templates in your local system.
 
-The GitHub repository path must in the format `https://api.github.com/repos/${USER}/path_to_templates`
+The GitHub repository path must in the format `https://api.github.com/repos/${USER}/${REPO}/contents/path_to_templates`
 
 ```js
 templatePath: 'https://api.github.com/repos/fatehak/dev-templates/contents/templates'
