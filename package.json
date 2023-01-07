@@ -7,7 +7,7 @@
     "dist/"
   ],
   "license": "MIT",
-  "description": "Rapidly scaffold projects for development with custom templates",
+  "description": "Rapidly scaffold your projects for development with custom templates",
   "repository": {
     "type": "git",
     "url": "https://github.com/FatehAK/genzo-cli"

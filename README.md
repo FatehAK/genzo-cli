@@ -1,7 +1,7 @@
 <div align="center">
  <h1>genzo</h1>
   <p>
-    Rapidly scaffold projects for development with custom templates
+    Rapidly scaffold your projects for development with custom templates
   </p>
 </div>
 
@@ -14,7 +14,23 @@
 
 ### Features
 
+- Fetch your custom templates stored in GitHub or your local file system.
+- Fuzzy searches your list of templates for convenience and ease of use.
+- Interactive prompts using [Inquirer](https://www.npmjs.com/package/inquirer) to automate common tasks in repository setup.
+- Can detect a Monorepo template and install deps in all packages.
+- Checks presence of [Husky](https://www.npmjs.com/package/husky) scripts and makes them executable so you don't have to!
+- Make use of slots to quickly replace repeated patterns in the generated repository.
+- Supports CLI arguments to automatically initialize Git, install packages and open your preferred code editor.
+
 ### Demo
+
+- Fetching templates from GitHub
+
+![general usage](https://images2.imgbox.com/27/68/DqPhlgQc_o.gif)
+
+- Using a local Monorepo template and auto-setup git and packages without prompting the user with the `-gi` flag
+
+![monorepo usage](https://images2.imgbox.com/bd/12/7Qwxmkql_o.gif)
 
 ### Installation
 
