@@ -68,7 +68,7 @@
     "pathe": "^1.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.4.1",
+    "@commitlint/cli": "^17.4.2",
     "@types/inquirer": "^9.0.3",
     "concurrently": "^7.6.0",
     "czg": "1.4.1",
