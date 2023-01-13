@@ -11,6 +11,13 @@
     "type": "git",
     "url": "https://github.com/FatehAK/genzo-cli"
   },
+  "module": "./dist/cli.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/cli.mjs"
+    },
+    "./package.json": "./package.json"
+  },
   "bin": {
     "gen": "./dist/cli.mjs",
     "genzo": "./dist/cli.mjs"
