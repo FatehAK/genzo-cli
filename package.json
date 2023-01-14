@@ -67,7 +67,7 @@
     "fs-extra": "^11.1.0",
     "inquirer": "^9.1.4",
     "inquirer-search-list": "^1.2.6",
-    "minimatch": "^5.1.2",
+    "minimatch": "^5.1.4",
     "minimist": "^1.2.7",
     "nanospinner": "^1.1.0",
     "node-fetch": "^3.3.0",
