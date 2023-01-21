@@ -71,7 +71,7 @@
     "minimist": "^1.2.7",
     "nanospinner": "^1.1.0",
     "node-fetch": "^3.3.0",
-    "pathe": "^1.0.0"
+    "pathe": "^1.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
