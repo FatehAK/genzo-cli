@@ -68,7 +68,7 @@
     "inquirer": "^9.1.4",
     "inquirer-search-list": "^1.2.6",
     "minimatch": "^5.1.6",
-    "minimist": "^1.2.7",
+    "minimist": "^1.2.8",
     "nanospinner": "^1.1.0",
     "node-fetch": "^3.3.0",
     "pathe": "^1.1.0"
