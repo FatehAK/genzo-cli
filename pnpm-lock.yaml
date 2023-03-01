@@ -26,7 +26,7 @@ specifiers:
   node-fetch: ^3.3.0
   pathe: ^1.1.0
   prettier: ^2.8.4
-  release-it: ^15.6.1
+  release-it: ^15.7.0
   rimraf: ^4.1.2
   rollup-plugin-visualizer: ^5.9.0
   vite: ^4.1.4
@@ -59,7 +59,7 @@ devDependencies:
   husky: 8.0.3
   lint-staged: 13.1.2
   prettier: 2.8.4
-  release-it: 15.6.1
+  release-it: 15.7.0
   rimraf: 4.1.2
   rollup-plugin-visualizer: 5.9.0
   vite: 4.1.4_@types+node@18.14.2
@@ -3806,8 +3806,8 @@ packages:
       rc: 1.2.8
     dev: true
 
-  /release-it/15.6.1:
-    resolution: {integrity: sha512-oPJKP2yxMcA/TaGFnS5uB0spDSPiDXXd1yGKSSMQ2xutyiSs8X+1UahlJCF/xHnp01QwUqRv0fpsV9MFr2GKmQ==}
+  /release-it/15.7.0:
+    resolution: {integrity: sha512-/ajllmzQNuxXCrPySwx+MiR/nBHp8H+lTn42QFw9YlFPJQpLFwgMjCOFTB4hhuavi9jMbDpWcTPFy31QJgzNcw==}
     engines: {node: '>=14.9'}
     hasBin: true
     dependencies:
