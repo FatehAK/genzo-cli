@@ -2,7 +2,7 @@ import { resolve, join, sep } from 'pathe';
 import fetch from 'node-fetch';
 import fs from 'fs-extra';
 import { execa } from 'execa';
-import minimatch from 'minimatch';
+import { minimatch } from 'minimatch';
 import ansi from 'ansi-colors';
 import { GITHUB_DIR_TYPE, GITHUB_FILE_TYPE } from './constants';
 
