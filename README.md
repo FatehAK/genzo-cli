@@ -1,22 +1,18 @@
 <div align="center">
   <a href="https://www.npmjs.com/package/genzo">
-    <img width="120" height="120" hspace="10"
-      src="https://images2.imgbox.com/bc/cd/sxR54KnL_o.png" alt="genzo logo">
+    <img width="120" height="120" hspace="10" src="https://images2.imgbox.com/bc/cd/sxR54KnL_o.png" alt="genzo logo" />
   </a>
- <h1>genzo</h1>
-  <p>
-    Rapidly scaffold your projects for development with custom templates
-  </p>
-</div>
-
-<div align="center">
+  <h1>genzo</h1>
+  <p>Rapidly scaffold your projects for development with custom templates</p>
   <img src="https://img.shields.io/node/v/genzo" alt="node-current" />
-  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/fatehak/genzo-cli/validate_build.yaml">
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/fatehak/genzo-cli/validate_build.yaml" />
   <img src="https://img.shields.io/github/v/release/fatehak/genzo-cli" alt="GitHub release" />
   <img src="https://img.shields.io/npm/l/genzo" alt="licence" />
 </div>
 
-### Features
+<p>&nbsp;</p>
+
+## Features
 
 - Fetch your custom templates stored in GitHub or your local file system.
 - Fuzzy searches your list of templates for convenience and ease of use.
@@ -26,7 +22,17 @@
 - Make use of slots to quickly replace repeated patterns in the generated repository.
 - Supports CLI arguments to automatically initialize Git, install packages and open your preferred code editor.
 
-### Demo
+## Motivation
+
+As we gain experience with various projects and tools, we tend to maintain opinionated templates to bootstrap new projects. Maybe you have a customized setup for building a production-grade Web project, or you got some handy templates for experiments or even some for your technical interviews.
+
+With `genzo`, you can rapidly scaffold projects using your custom templates from local and remote sources. It automates the most common tasks involved in setting up a JavaScript-based project.
+
+If you find the tool useful, consider showing your support by giving a ⭐
+
+Contributions are most welcome! We follow [conventional-commits](https://www.conventionalcommits.org/en/v1.0.0/)
+
+## Demo
 
 - Fetching templates from GitHub
 
@@ -38,7 +44,7 @@
 
 Templates created by me for reference - https://github.com/FatehAK/dev-templates
 
-### Installation
+## Installation
 
 ```shell
 npm install -g genzo
@@ -46,7 +52,7 @@ npm install -g genzo
 
 Create a `.genzorc.js` file in your `$HOME` directory. Refer [config](#configuration) for more details.
 
-### Usage
+## Usage
 
 ```console
 gen [OPTIONS] | genzo [OPTIONS]
@@ -68,7 +74,7 @@ EXAMPLES:
   gen -gi -e code        # does git init, installs packages and opens the specified editor (i.e VSCode)
 ```
 
-### Configuration
+## Configuration
 
 The configuration must be defined in `.genzorc.js` and placed in the system's `$HOME` directory.
 
@@ -163,6 +169,6 @@ or you can also specify an alias to an editor binary, for example to open VSCode
 editorBinary: 'code'
 ```
 
-### License
+## License
 
 [MIT](./LICENSE)
