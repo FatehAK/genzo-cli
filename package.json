@@ -78,7 +78,7 @@
     "@types/inquirer": "^9.0.3",
     "concurrently": "^7.6.0",
     "czg": "1.6.1",
-    "eslint": "^8.36.0",
+    "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-semistandard": "^17.0.0",
     "eslint-formatter-pretty": "^4.1.0",
@@ -97,7 +97,7 @@
   "engines": {
     "node": ">=14"
   },
-  "packageManager": "pnpm@7.30.3",
+  "packageManager": "pnpm@7.30.5",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   }
