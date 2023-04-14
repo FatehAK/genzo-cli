@@ -20,7 +20,7 @@ specifiers:
   inquirer: ^9.1.5
   inquirer-search-list: ^1.2.6
   lint-staged: ^13.2.1
-  minimatch: ^7.4.5
+  minimatch: ^7.4.6
   minimist: ^1.2.8
   nanospinner: ^1.1.0
   node-fetch: ^3.3.1
@@ -37,7 +37,7 @@ dependencies:
   fs-extra: 11.1.1
   inquirer: 9.1.5
   inquirer-search-list: 1.2.6
-  minimatch: 7.4.5
+  minimatch: 7.4.6
   minimist: 1.2.8
   nanospinner: 1.1.0
   node-fetch: 3.3.1
@@ -3319,8 +3319,8 @@ packages:
       brace-expansion: 1.1.11
     dev: true
 
-  /minimatch/7.4.5:
-    resolution: {integrity: sha512-OzOamaOmNBJZUv2qqY1OSWa+++4YPpOkLgkc0w30Oov5ufKlWWXnFUl0l4dgmSv5Shq/zRVkEOXAe2NaqO4l5Q==}
+  /minimatch/7.4.6:
+    resolution: {integrity: sha512-sBz8G/YjVniEz6lKPNpKxXwazJe4c19fEfV2GDMX6AjFz+MX9uDWIZW8XreVhkFW3fkIdTv/gxWr/Kks5FFAVw==}
     engines: {node: '>=10'}
     dependencies:
       brace-expansion: 2.0.1
