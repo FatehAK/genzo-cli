@@ -76,7 +76,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",
     "@types/inquirer": "^9.0.3",
-    "concurrently": "^7.6.0",
+    "concurrently": "^8.1.0",
     "czg": "1.6.1",
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
