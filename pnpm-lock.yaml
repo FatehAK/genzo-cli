@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -15,8 +15,8 @@ dependencies:
     specifier: ^11.1.1
     version: 11.1.1
   inquirer:
-    specifier: ^9.2.6
-    version: 9.2.6
+    specifier: ^9.2.7
+    version: 9.2.7
   inquirer-search-list:
     specifier: ^1.2.6
     version: 1.2.6
@@ -44,8 +44,8 @@ devDependencies:
     specifier: ^9.0.3
     version: 9.0.3
   concurrently:
-    specifier: ^8.1.0
-    version: 8.1.0
+    specifier: ^8.2.0
+    version: 8.2.0
   czg:
     specifier: 1.6.1
     version: 1.6.1
@@ -83,14 +83,14 @@ devDependencies:
     specifier: ^2.8.8
     version: 2.8.8
   release-it:
-    specifier: ^15.10.5
-    version: 15.10.5
+    specifier: ^15.11.0
+    version: 15.11.0
   rimraf:
     specifier: ^5.0.1
     version: 5.0.1
   rollup-plugin-visualizer:
-    specifier: ^5.9.0
-    version: 5.9.0
+    specifier: ^5.9.2
+    version: 5.9.2
   vite:
     specifier: ^4.3.9
     version: 4.3.9(@types/node@20.2.5)
@@ -1319,8 +1319,8 @@ packages:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
-  /concurrently@8.1.0:
-    resolution: {integrity: sha512-0AB6eOAtaW/r/kX2lCdolaWtT191ICeuJjEJvI9hT3zbPFuZ/iZaJwMRKwbuwADome7OKxk73L7od+fsveZ7tA==}
+  /concurrently@8.2.0:
+    resolution: {integrity: sha512-nnLMxO2LU492mTUj9qX/az/lESonSZu81UznYDoXtz1IQf996ixVqPAgHXwvHiHCAef/7S8HIK+fTFK7Ifk8YA==}
     engines: {node: ^14.13.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -1329,7 +1329,7 @@ packages:
       lodash: 4.17.21
       rxjs: 7.8.1
       shell-quote: 1.8.1
-      spawn-command: 0.0.2-1
+      spawn-command: 0.0.2
       supports-color: 8.1.1
       tree-kill: 1.2.2
       yargs: 17.7.2
@@ -2672,6 +2672,28 @@ packages:
       strip-ansi: 6.0.1
       through: 2.3.8
       wrap-ansi: 6.2.0
+    dev: true
+
+  /inquirer@9.2.7:
+    resolution: {integrity: sha512-Bf52lnfvNxGPJPltiNO2tLBp3zC339KNlGMqOkW+dsvNikBhcVDK5kqU2lVX2FTPzuXUFX5WJDlsw//w3ZwoTw==}
+    engines: {node: '>=14.18.0'}
+    dependencies:
+      ansi-escapes: 4.3.2
+      chalk: 5.2.0
+      cli-cursor: 3.1.0
+      cli-width: 4.0.0
+      external-editor: 3.1.0
+      figures: 5.0.0
+      lodash: 4.17.21
+      mute-stream: 1.0.0
+      ora: 5.4.1
+      run-async: 3.0.0
+      rxjs: 7.8.1
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+      through: 2.3.8
+      wrap-ansi: 6.2.0
+    dev: false
 
   /internal-slot@1.0.5:
     resolution: {integrity: sha512-Y+R5hJrzs52QCG2laLn4udYVnxsfny9CpOhNhUvk/SSSVyF6T27FzRbF0sroPidSu3X8oEAkOn2K804mjpt6UQ==}
@@ -3978,8 +4000,8 @@ packages:
       rc: 1.2.8
     dev: true
 
-  /release-it@15.10.5:
-    resolution: {integrity: sha512-6AWkcOYsEfCzegtAKvXekUG+CLjlFXztDwGzxFOGa8VJRuXbPONfM8rvaPYJX1hTlL5+KC4MWOEoKKzWhQ65gA==}
+  /release-it@15.11.0:
+    resolution: {integrity: sha512-lZwoGEnKYKwGnfxxlA7vtR7vvozPrOSsIgQaHO4bgQ5ARbG3IA6Dmo0IVusv6nR1KmnjH70QIeNAgsWs6Ji/tw==}
     engines: {node: '>=14.9'}
     hasBin: true
     dependencies:
@@ -4114,8 +4136,8 @@ packages:
       glob: 10.2.6
     dev: true
 
-  /rollup-plugin-visualizer@5.9.0:
-    resolution: {integrity: sha512-bbDOv47+Bw4C/cgs0czZqfm8L82xOZssk4ayZjG40y9zbXclNk7YikrZTDao6p7+HDiGxrN0b65SgZiVm9k1Cg==}
+  /rollup-plugin-visualizer@5.9.2:
+    resolution: {integrity: sha512-waHktD5mlWrYFrhOLbti4YgQCn1uR24nYsNuXxg7LkPH8KdTXVWR9DNY1WU0QqokyMixVXJS4J04HNrVTMP01A==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
@@ -4334,8 +4356,8 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
-  /spawn-command@0.0.2-1:
-    resolution: {integrity: sha512-n98l9E2RMSJ9ON1AKisHzz7V42VDiBQGY6PB1BwRglz99wpVsSuGzQ+jOi6lFXBGVTCrRpltvjm+/XA+tpeJrg==}
+  /spawn-command@0.0.2:
+    resolution: {integrity: sha512-zC8zGoGkmc8J9ndvml8Xksr1Amk9qBujgbF0JAIWO7kXr43w0h/0GJNM/Vustixu+YE8N/MTrQ7N31FvHUACxQ==}
     dev: true
 
   /spdx-correct@3.2.0:
