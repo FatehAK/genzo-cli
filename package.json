@@ -78,7 +78,7 @@
     "@types/inquirer": "^9.0.3",
     "concurrently": "^8.2.0",
     "czg": "1.6.1",
-    "eslint": "^8.42.0",
+    "eslint": "^8.43.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-semistandard": "^17.0.0",
     "eslint-formatter-pretty": "^5.0.0",
