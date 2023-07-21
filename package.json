@@ -92,12 +92,12 @@
     "release-it": "^15.11.0",
     "rimraf": "^5.0.1",
     "rollup-plugin-visualizer": "^5.9.2",
-    "vite": "^4.4.4"
+    "vite": "^4.4.6"
   },
   "engines": {
     "node": ">=14"
   },
-  "packageManager": "pnpm@8.6.7",
+  "packageManager": "pnpm@8.6.9",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   }
