@@ -90,14 +90,14 @@
     "lint-staged": "^13.3.0",
     "prettier": "^2.8.8",
     "release-it": "^15.11.0",
-    "rimraf": "^5.0.1",
+    "rimraf": "^5.0.5",
     "rollup-plugin-visualizer": "^5.9.2",
     "vite": "^4.4.9"
   },
   "engines": {
     "node": ">=14"
   },
-  "packageManager": "pnpm@8.7.6",
+  "packageManager": "pnpm@8.8.0",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   }
