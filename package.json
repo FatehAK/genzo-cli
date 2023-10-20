@@ -75,10 +75,10 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^17.8.1",
-    "@types/inquirer": "^9.0.4",
-    "concurrently": "^8.2.1",
+    "@types/inquirer": "^9.0.6",
+    "concurrently": "^8.2.2",
     "czg": "1.7.1",
-    "eslint": "^8.51.0",
+    "eslint": "^8.52.0",
     "eslint-config-prettier": "^8.10.0",
     "eslint-config-semistandard": "^17.0.0",
     "eslint-formatter-pretty": "^5.0.0",
@@ -92,12 +92,12 @@
     "release-it": "^15.11.0",
     "rimraf": "^5.0.5",
     "rollup-plugin-visualizer": "^5.9.2",
-    "vite": "^4.4.11"
+    "vite": "^4.5.0"
   },
   "engines": {
     "node": ">=14"
   },
-  "packageManager": "pnpm@8.9.0",
+  "packageManager": "pnpm@8.9.2",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   }
