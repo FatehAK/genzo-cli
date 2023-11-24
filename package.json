@@ -91,13 +91,13 @@
     "prettier": "^2.8.8",
     "release-it": "^15.11.0",
     "rimraf": "^5.0.5",
-    "rollup-plugin-visualizer": "^5.9.2",
+    "rollup-plugin-visualizer": "^5.9.3",
     "vite": "^4.5.0"
   },
   "engines": {
     "node": ">=14"
   },
-  "packageManager": "pnpm@8.10.5",
+  "packageManager": "pnpm@8.11.0",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   }
