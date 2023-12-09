@@ -47,8 +47,8 @@ devDependencies:
     specifier: ^8.2.2
     version: 8.2.2
   czg:
-    specifier: 1.7.1
-    version: 1.7.1
+    specifier: 1.8.0
+    version: 1.8.0
   eslint:
     specifier: ^8.55.0
     version: 8.55.0
@@ -89,7 +89,7 @@ devDependencies:
     specifier: ^5.0.5
     version: 5.0.5
   rollup-plugin-visualizer:
-    specifier: ^5.9.3
+    specifier: ^5.10.0
     version: 5.10.0
   vite:
     specifier: ^4.5.0
@@ -1467,8 +1467,8 @@ packages:
       type-fest: 1.4.0
     dev: true
 
-  /czg@1.7.1:
-    resolution: {integrity: sha512-KP93cTbZxgWYDKJzZpjnLe0sy/2FwyegatnrOaqsath04WinvsdhZl5QCGkxTKBY2DavpKloIBW/WGZzCKmrlA==}
+  /czg@1.8.0:
+    resolution: {integrity: sha512-vLX3AIUaE30C/qkeuL+g1fcdjZ72vBdON12E4V4vmuTKKe7OMoQ2MxBYbWhl5OP28+ggCrajxGBk6bdjIn5LgQ==}
     engines: {node: '>=v12.20.0'}
     hasBin: true
     dev: true
