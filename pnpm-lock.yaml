@@ -1170,8 +1170,8 @@ packages:
       ieee754: 1.2.1
     dev: true
 
-  /builtins@5.0.1:
-    resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
+  /builtins@5.1.0:
+    resolution: {integrity: sha512-SW9lzGTLvWTP1AY8xeAMZimqDrIaSdLQUcVr9DMef51niJ022Ri87SwRRKYm4A6iHfkPaiVUu/Duw2Wc4J7kKg==}
     dependencies:
       semver: 7.6.0
     dev: true
@@ -2031,7 +2031,7 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
     dependencies:
-      builtins: 5.0.1
+      builtins: 5.1.0
       eslint: 8.57.0
       eslint-plugin-es: 4.1.0(eslint@8.57.0)
       eslint-utils: 3.0.0(eslint@8.57.0)
