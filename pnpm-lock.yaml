@@ -16,7 +16,7 @@ dependencies:
     version: 11.2.0
   inquirer:
     specifier: ^9.3.1
-    version: 9.3.1
+    version: 9.3.2
   inquirer-search-list:
     specifier: ^1.2.6
     version: 1.2.6
@@ -2836,8 +2836,8 @@ packages:
       wrap-ansi: 6.2.0
     dev: true
 
-  /inquirer@9.3.1:
-    resolution: {integrity: sha512-A5IdVr1I04XqPlwrGgTJMKmzRg5ropqNpSeqo0vj1ZmluSCNSFaPZz4eazdPrhVcZfej7fCEYvD2NYa1KjkTJA==}
+  /inquirer@9.3.2:
+    resolution: {integrity: sha512-+ynEbhWKhyomnaX0n2aLIMSkgSlGB5RrWbNXnEqj6mdaIydu6y40MdBjL38SAB0JcdmOaIaMua1azdjLEr3sdw==}
     engines: {node: '>=18'}
     dependencies:
       '@inquirer/figures': 1.0.3
@@ -2846,12 +2846,12 @@ packages:
       external-editor: 3.1.0
       mute-stream: 1.0.0
       ora: 5.4.1
-      picocolors: 1.0.1
       run-async: 3.0.0
       rxjs: 7.8.1
       string-width: 4.2.3
       strip-ansi: 6.0.1
       wrap-ansi: 6.2.0
+      yoctocolors-cjs: 2.1.1
     dev: false
 
   /internal-slot@1.0.7:
@@ -5253,3 +5253,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /yoctocolors-cjs@2.1.1:
+    resolution: {integrity: sha512-c6T13b6qYcJZvck7QbEFXrFX/Mu2KOjvAGiKHmYMUg96jxNpfP6i+psGW72BOPxOIDUJrORG+Kyu7quMX9CQBQ==}
+    engines: {node: '>=18'}
+    dev: false
