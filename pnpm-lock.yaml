@@ -27,8 +27,8 @@ dependencies:
     specifier: ^1.2.8
     version: 1.2.8
   nanospinner:
-    specifier: ^1.1.0
-    version: 1.1.0
+    specifier: ^1.2.0
+    version: 1.2.0
   node-fetch:
     specifier: ^3.3.2
     version: 3.3.2
@@ -3605,8 +3605,8 @@ packages:
     hasBin: true
     dev: true
 
-  /nanospinner@1.1.0:
-    resolution: {integrity: sha512-yFvNYMig4AthKYfHFl1sLj7B2nkHL4lzdig4osvl9/LdGbXwrdFRoqBS98gsEsOakr0yH+r5NZ/1Y9gdVB8trA==}
+  /nanospinner@1.2.0:
+    resolution: {integrity: sha512-dGxYcEj8YhuxjVO3PYmnj1nBhtwUkvuwYbLl/MduBPmQUPy3xBtG/ScJgqZgntQkX44UQaCSlFeW4rS5fUR/Sw==}
     dependencies:
       picocolors: 1.1.1
     dev: false
