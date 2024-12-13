@@ -69,7 +69,7 @@
     "inquirer-search-list": "^1.2.6",
     "minimatch": "^9.0.5",
     "minimist": "^1.2.8",
-    "nanospinner": "^1.2.0",
+    "nanospinner": "^1.2.2",
     "node-fetch": "^3.3.2",
     "pathe": "^1.1.2"
   },
