@@ -92,7 +92,7 @@
     "release-it": "^15.11.0",
     "rimraf": "^5.0.10",
     "rollup-plugin-visualizer": "^5.13.1",
-    "vite": "^4.5.10"
+    "vite": "^4.5.12"
   },
   "engines": {
     "node": ">=14"
