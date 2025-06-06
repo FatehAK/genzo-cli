@@ -41,8 +41,8 @@ devDependencies:
     specifier: ^17.8.1
     version: 17.8.1
   '@types/inquirer':
-    specifier: ^9.0.7
-    version: 9.0.7
+    specifier: ^9.0.8
+    version: 9.0.8
   concurrently:
     specifier: ^8.2.2
     version: 8.2.2
@@ -92,8 +92,8 @@ devDependencies:
     specifier: ^5.13.1
     version: 5.14.0
   vite:
-    specifier: ^4.5.13
-    version: 4.5.13(@types/node@20.5.1)
+    specifier: ^4.5.14
+    version: 4.5.14(@types/node@20.5.1)
 
 packages:
 
@@ -800,8 +800,8 @@ packages:
     resolution: {integrity: sha512-1m0bIFVc7eJWyve9S0RnuRgcQqF/Xd5QsUZAZeQFr1Q3/p9JWoQQEqmVy+DPTNpGXwhgIetAoYF8JSc33q29QA==}
     dev: true
 
-  /@types/inquirer@9.0.7:
-    resolution: {integrity: sha512-Q0zyBupO6NxGRZut/JdmqYKOnN95Eg5V8Csg3PGKkP+FnvsUZx1jAyK7fztIszxxMuoBA6E3KXWvdZVXIpx60g==}
+  /@types/inquirer@9.0.8:
+    resolution: {integrity: sha512-CgPD5kFGWsb8HJ5K7rfWlifao87m4ph8uioU7OTncJevmE/VLIqAAjfQtko578JZg7/f69K4FgqYym3gNr7DeA==}
     dependencies:
       '@types/through': 0.0.33
       rxjs: 7.8.2
@@ -5247,8 +5247,8 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite@4.5.13(@types/node@20.5.1):
-    resolution: {integrity: sha512-Hgp8IF/yZDzKsN1hQWOuQZbrKiaFsbQud+07jJ8h9m9PaHWkpvZ5u55Xw5yYjWRXwRQ4jwFlJvY7T7FUJG9MCA==}
+  /vite@4.5.14(@types/node@20.5.1):
+    resolution: {integrity: sha512-+v57oAaoYNnO3hIu5Z/tJRZjq5aHM2zDve9YZ8HngVHbhk66RStobhb1sqPMIPEleV6cNKYK4eGrAbE9Ulbl2g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
