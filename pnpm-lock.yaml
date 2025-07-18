@@ -53,8 +53,8 @@ devDependencies:
     specifier: ^8.57.1
     version: 8.57.1
   eslint-config-prettier:
-    specifier: ^8.10.0
-    version: 8.10.0(eslint@8.57.1)
+    specifier: ^8.10.2
+    version: 8.10.2(eslint@8.57.1)
   eslint-config-semistandard:
     specifier: ^17.0.0
     version: 17.0.0(eslint-config-standard@17.1.0)(eslint-plugin-import@2.32.0)(eslint-plugin-n@15.7.0)(eslint-plugin-promise@6.6.0)(eslint@8.57.1)
@@ -1936,8 +1936,8 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /eslint-config-prettier@8.10.0(eslint@8.57.1):
-    resolution: {integrity: sha512-SM8AMJdeQqRYT9O9zguiruQZaN7+z+E4eAP9oiLNGKMtomwaB1E9dcgUD6ZAn/eQAb52USbvezbiljfZUhbJcg==}
+  /eslint-config-prettier@8.10.2(eslint@8.57.1):
+    resolution: {integrity: sha512-/IGJ6+Dka158JnP5n5YFMOszjDWrXggGz1LaK/guZq9vZTmniaKlHcsscvkAhn9y4U+BU3JuUdYvtAMcv30y4A==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
