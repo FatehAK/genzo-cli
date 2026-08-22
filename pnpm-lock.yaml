@@ -47,8 +47,8 @@ devDependencies:
     specifier: ^8.2.2
     version: 8.2.2
   czg:
-    specifier: 1.13.2
-    version: 1.13.2
+    specifier: 1.14.0
+    version: 1.14.0
   eslint:
     specifier: ^8.57.1
     version: 8.57.1
@@ -1511,8 +1511,8 @@ packages:
       type-fest: 1.4.0
     dev: true
 
-  /czg@1.13.2:
-    resolution: {integrity: sha512-qfabNsNazjGND5WSPUZbuBtKkZc0hJOLBk8yS2sfF99cHkyBoAuFOLgMosfc/keoa6QEz64Vje29nmP6T01oSw==}
+  /czg@1.14.0:
+    resolution: {integrity: sha512-pO0VNReAHu6TSArr655pYRyShn6n2MX2ohMIz/jIugbI2UkeqSGp46zIOsYKORi9l1WNcdkbCiLKc8lolCr2Tw==}
     engines: {node: '>=v12.20.0'}
     hasBin: true
     dev: true
