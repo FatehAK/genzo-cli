@@ -15,7 +15,7 @@ import {
   openInEditor,
   getHelpTemplate,
 } from './utils';
-import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './constants';
+import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS, SAFE_EDITOR_REGEX } from './constants';
 
 (async function () {
   // get cli arguments
@@ -179,6 +179,10 @@ import { CONFIG_FILE_NAME, GITHUB_PATH_REGEX, INQUIRER_DEFAULT_OPTS } from './co
 
     // STEP 7 - open generated repository in the code editor
     if (typeof argv.editor === 'string' && argv.editor.length) {
+      if (!SAFE_EDITOR_REGEX.test(argv.editor)) {
+        console.log(ansi.red(`\nInvalid editor value: ${ansi.bold(argv.editor)}`));
+        process.exit(1);
+      }
       await openInEditor(argv.editor, repoAbsPath);
     } else if (argv.editor) {
       await openInEditor(config.editorBinary, repoAbsPath);
