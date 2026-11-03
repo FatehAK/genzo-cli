@@ -100,5 +100,10 @@
   "packageManager": "pnpm@8.15.9",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
+  },
+  "pnpm": {
+    "overrides": {
+      "tmp": "0.2.7"
+    }
   }
 }
